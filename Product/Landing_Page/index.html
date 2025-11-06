@@ -985,45 +985,7 @@
         </div>
     </footer>
 
-    <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <script>
-        // Supabase Configuration
-        const SUPABASE_URL = 'https://ncjpkpkobxzinagrhbcl.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5janBrcGtvYnh6aW5hZ3JoYmNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5ODc5MDYsImV4cCI6MjA3NzU2MzkwNn0.tfDeh0bsf-ZjRgM69HWxVAEGpqpuSNBONeCeiZTOfSc';
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-        // Check authentication status
-        (async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            
-            if (session) {
-                // User is logged in
-                const fullName = session.user.user_metadata?.full_name || session.user.email.split('@')[0];
-                const initials = fullName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
-                
-                document.getElementById('userName').textContent = fullName;
-                document.getElementById('userAvatar').textContent = initials;
-                document.getElementById('authButtons').style.display = 'none';
-                document.getElementById('userMenu').style.display = 'flex';
-            } else {
-                // User is not logged in
-                document.getElementById('authButtons').style.display = 'flex';
-                document.getElementById('userMenu').style.display = 'none';
-            }
-        })();
-
-        // Logout function
-        async function logout() {
-            try {
-                await supabase.auth.signOut();
-                window.location.reload();
-            } catch (error) {
-                console.error('Logout error:', error);
-                alert('Failed to logout. Please try again.');
-            }
-        }
+    <!-- Auth removed for demo version -->
 
         // Language switching
         let currentLang = 'en';
